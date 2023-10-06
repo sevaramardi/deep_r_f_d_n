@@ -26,7 +26,7 @@ def conv_layer(in_channels,
 # Main block multikernalDepthwiseConv()
 class MultiKernalDepthwiseConv(nn.Module):
     def __init__(self, in_channels, out_channels, kernels, stride=1, dilation=1, groups=1):
-        super(MultiKernalDepthwiseConv, self).__init__()
+        super(MultiKernalDepthwiseConv, self).__init__() 
 
         padding_dict = {1: 0, 3: 1, 5: 2, 7: 3}
         self.seps = nn.ModuleList()
