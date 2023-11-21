@@ -1,27 +1,27 @@
 import torch
 import torch.nn as nn
-import models.rfdn_baseline.block as B
+import mkdc_block as m
 
 def make_model(args, parent=False):
-    model = RFDN()
+    model = DRFDN()
     return model
 
 
-class RFDN(nn.Module):
+class DRFDN(nn.Module):
     def __init__(self, in_nc=3, nf=50, num_modules=4, out_nc=3, upscale=4):
-        super(RFDN, self).__init__()
+        super(DRFDN, self).__init__()
 
-        self.fea_conv = B.conv_layer(in_nc, nf, kernel_size=3)
+        self.fea_conv = m.conv_layer(in_nc, nf, kernel_size=3)
 
-        self.B1 = B.RFDB(in_channels=nf)
-        self.B2 = B.RFDB(in_channels=nf)
-        self.B3 = B.RFDB(in_channels=nf)
-        self.B4 = B.RFDB(in_channels=nf)
-        self.c = B.conv_block(nf * num_modules, nf, kernel_size=1, act_type='lrelu')
+        self.B1 = m.DRFDB(in_channels=nf, mid_channel = 64)
+        self.B2 = m.DRFDB(in_channels=nf,  mid_channel = 64)
+        self.B3 = m.DRFDB(in_channels=nf,  mid_channel = 64)
+        self.B4 = m.DRFDB(in_channels=nf,  mid_channel = 64)
+        self.c = m.conv_block(nf * num_modules, nf, kernel_size=1, act_type='lrelu')
 
-        self.LR_conv = B.conv_layer(nf, nf, kernel_size=3)
+        self.LR_conv = m.conv_layer(nf, nf, kernel_size=3)
 
-        upsample_block = B.pixelshuffle_block
+        upsample_block = m.pixelshuffle_block
         self.upsampler = upsample_block(nf, out_nc, upscale_factor=4)
         self.scale_idx = 0
 
