@@ -27,6 +27,8 @@ In the repository deep_r_f_d_n, are 3 major .py files for
 running the code: main.py, mkdc_block.py, are for the training the
 model and test.py for testing it.
 
+Read the full paper you can in https://www.sciencedirect.com/science/article/pii/S0950705123010912
+
 
 
 
