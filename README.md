@@ -13,7 +13,13 @@ running the code: main.py, mkdc_block.py, are for the training the
 model and test.py for testing it.
 Read the full paper you can in https://www.sciencedirect.com/science/article/pii/S0950705123010912
 
+requarements:
 
+      - Framework PyTorch (suitable for cuda version)
+      - numpy==1.14.4
+      - PIL== 8.0.0
+      - tensorflow-gpu==2.2.0
+      - keras==2.3.0
 
 
 
