@@ -22,7 +22,7 @@ requiring fewer parameters and less memory usage, making it highly suitable for 
 presents a breakthrough in super-resolution for IoT devices, balancing high-quality image reconstruction with
 the limited resources of these devices.
 
-We are inspired by RFDN model the winner of AIM 2020 efficient super-resolution challenge. We modified model residual feature distillation block into multi-kernal depthwise-separable convolution blocks. 
+We are inspired by RFDN model the winner of AIM 2020 efficient super-resolution challenge. We modified model residual feature distillation block into multi-kernal depthwise-separable convolution blocks. ![alt text](https://github.com/[sevaramardi]/[deep_r_f_d_n]/blob/[main]/mkdcb.jpg?raw=true)
 
 
 
