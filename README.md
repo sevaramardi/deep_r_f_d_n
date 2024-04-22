@@ -23,6 +23,7 @@ presents a breakthrough in super-resolution for IoT devices, balancing high-qual
 the limited resources of these devices.
 
 We are inspired by RFDN model the winner of AIM 2020 efficient super-resolution challenge. We modified model residual feature distillation block into multi-kernal depthwise-separable convolution blocks.
+![mkdcb](https://github.com/sevaramardi/deep_r_f_d_n/assets/122605318/8cfe7cd0-878e-4ecd-b8e7-c6206c2500d2)
 In the repository deep_r_f_d_n, are 3 major .py files for
 running the code: main.py, mkdc_block.py, are for the training the
 model and test.py for testing it.
