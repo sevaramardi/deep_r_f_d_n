@@ -4,6 +4,7 @@ In this paper we introduce the lightweight image super-resolution for IoT device
 ![mkdcb](https://github.com/sevaramardi/deep_r_f_d_n/assets/122605318/8cfe7cd0-878e-4ecd-b8e7-c6206c2500d2)
 
 Our main goal is decrease validation time[ms], number of params[M], flops[G] and memory consumption[M]. To achieve this results we used depthwise-separable convolution instead of standerd convolution layers. As shown in the table we compared the results of our model with the state-of-the-art methods on benchmark datasets. 
+
 ![table](https://github.com/sevaramardi/deep_r_f_d_n/assets/122605318/82cf8e47-d46e-40ed-b65d-5919e3eea1f0)
 
 The efficacy of the model shows how the model is suitable for IoT devices. Calculation process is explained in the paper in Section 3.3 Embedded device profiling and formulation.
