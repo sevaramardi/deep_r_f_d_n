@@ -23,10 +23,10 @@ def conv_layer(in_channels,
                      padding=padding,
                      bias=bias)
 
-
+# Main block multikernalDepthwiseConv()
 class MultiKernalDepthwiseConv(nn.Module):
     def __init__(self, in_channels, out_channels, kernels, stride=1, dilation=1, groups=1):
-        super(MultiKernalDepthwiseConv, self).__init__()
+        super(MultiKernalDepthwiseConv, self).__init__() 
 
         padding_dict = {1: 0, 3: 1, 5: 2, 7: 3}
         self.seps = nn.ModuleList()
@@ -96,39 +96,7 @@ def pad(pad_type, padding):
     return layer
 
 
-def get_valid_padding(kernel_size, dilation):
-    kernel_size = kernel_size + (kernel_size - 1) * (dilation - 1)
-    padding = (kernel_size - 1) // 2
-    return padding
 
-
-def activation(act_type, inplace=True, neg_slope=0.05, n_prelu=1):
-    act_type = act_type.lower()
-    if act_type == 'relu':
-        layer = nn.ReLU(inplace)
-
-
-    elif act_type == 'lrelu':
-        layer = nn.LeakyReLU(neg_slope, inplace)
-    elif act_type == 'prelu':
-        layer = nn.PReLU(num_parameters=n_prelu, init=neg_slope)
-    else:
-        raise NotImplementedError('activation layer [{:s}] is not found'.format(act_type))
-    return layer
-
-def sequential(*args):
-    if len(args) == 1:
-        if isinstance(args[0], OrderedDict):
-            raise NotImplementedError('sequential does not support OrderedDict input.')
-        return args[0]
-    modules = []
-    for module in args:
-        if isinstance(module, nn.Sequential):
-            for submodule in module.children():
-                modules.append(submodule)
-        elif isinstance(module, nn.Module):
-            modules.append(module)
-    return nn.Sequential(*modules)
 
 def pixelshuffle_block(in_channels, out_channels, upscale_factor=2, kernel_size=3, stride=1):
     conv = conv_layer(in_channels, out_channels * (upscale_factor ** 2), kernel_size, stride)
@@ -182,22 +150,6 @@ class DRFDB(nn.Module):
 
         self.act = activation('lrelu', neg_slope=0.05)
 
-    def forward(self, input):
-        out = self.act(self.c1_r(input))
-
-        out = self.act(self.c2_r(out))
-        out = self.act(self.c3_r(out))
-        out = self.act(self.c4_r(out))
-
-
-        out = out + input
-        out = self.esa(self.c5(out))
-
-        return out
-
-
-    def set_scale(self, scale_idx):
-        self.scale_idx = scale_idx
 
 
 
